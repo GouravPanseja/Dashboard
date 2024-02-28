@@ -7,9 +7,10 @@ import {links} from '../data/dummy';
 import  {useStateContext} from "../context/ContextProvider";
 
 const Sidebar = ()=>{
-    const {activeMenu,setActiveMenu,screenSize} = useStateContext();
+    const {activeMenu,setActiveMenu,screenSize,currentColor} = useStateContext();
+    console.log(`bg-[${currentColor}]-600`);
 
-    const activeLinkStyle = "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-green-600 text-md m-2";
+    const activeLinkStyle = `flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2`;
     const normalLinkStyle = "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
     
     const closeSidebar =()=>{                   // closes the sidebar if it is open and the device is smaller
@@ -19,7 +20,7 @@ const Sidebar = ()=>{
     }
 
     return(
-        <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">  
+        <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 ">  
         {
             activeMenu && (<>
                 <div className="flex justify-between items-center">
@@ -47,7 +48,14 @@ const Sidebar = ()=>{
                                 {
                                     item.links.map((link)=>(
 
-                                        <NavLink to={`/${link.name}`} key =  {link.name} onClick={closeSidebar} className={({isActive})=> isActive ? activeLinkStyle : normalLinkStyle}>
+                                        <NavLink 
+                                            to={`/${link.name}`} 
+                                            key =  {link.name} 
+                                            onClick={closeSidebar} 
+                                            className={({isActive})=> isActive ? activeLinkStyle : normalLinkStyle} 
+                                            style={ ({isActive}) => isActive ? {backgroundColor:currentColor} : {}}
+                                            
+                                        >
                                             {link.icon}
                                             <span className="capitalize">{link.name}</span>
                                         </NavLink>

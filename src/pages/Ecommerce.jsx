@@ -7,6 +7,8 @@ import { useStateContext } from "../context/ContextProvider";
 //bg-hero-pattern bg-no-repeat bg-cover bg-center
 
 const Ecommerce = ()=>{
+
+    const {currentColor} = useStateContext();
     return(
 
         <div className="mt-12">
@@ -24,7 +26,7 @@ const Ecommerce = ()=>{
 
                     </div>
                     <div className="mt-6">
-                        <Button size="md " color="white" bgColor="blue" text="Download" borderRadius="10px"/>
+                        <Button size="md " color="white" bgColor={currentColor} text="Download" borderRadius="10px"/>
                     </div>
                 </div>
 
@@ -99,18 +101,18 @@ const Ecommerce = ()=>{
                             </div>
                             
                             <div className="mt-5">
-                                <SparkLine currentColor="blue" id="line-sparkline"
+                                <SparkLine currentColor={currentColor} id="line-sparkline"
                                 type="Line"
                                 height="80px"
                                 width="250px"
-                                color="blue"
+                                color={currentColor}
                                 data={SparklineAreaData}
                                 />
                             </div>
                             <div className="mt-10">
                                 <Button
                                     color="white"
-                                    bgColor="Blue"
+                                    bgColor={currentColor}
                                     text="Download Report"
                                     borderRadius="10px"
                                 />
